@@ -41,14 +41,23 @@ function convexHull() {
       }
     }
     
+    hull.push(0)
+    
     for (let k = 0; k < n; k++){
         try {
-        stroke(0, 255, 0);
-        console.log(points[hull[k]].x + ", " + points[hull[k]].y);
-        ellipse(points[hull[k]].x, points[hull[k]].y, 20, 20);
+          stroke(0, 255, 0);
+          console.log(points[hull[k]].x + ", " + points[hull[k]].y);
+          ellipse(points[hull[k]].x, points[hull[k]].y, 20, 20);
         } catch(err) {}
     }
-    stroke(0,0,0)
+    
+    stroke(0,0,0);
+    
+    for (var l = 1; l < hull.length; l++){
+      try {
+       line(points[hull[l-1]].x,points[hull[l-1]].y, points[hull[l]].x, points[hull[l]].y);
+      } catch(err) {}
+    }
   } else {
     text("Need more points.", 10, 20)
   }
