@@ -1,4 +1,6 @@
 const points = [];
+const screenX = 400;
+const screenY = 400;
 
 function orientation(p, q, r) {
   // To find orientation of ordered triplet (p, q, r).  
@@ -64,16 +66,18 @@ function convexHull() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(screenX, screenY);
   background(244);
 }
 
 function draw() {
   if (mouseIsPressed) {
     mouseReleased = function() {
-      fill(0)
-      ellipse(mouseX, mouseY, 20, 20);
-      points.push(createVector(mouseX, mouseY));
+      if (mouseX <= screenX && mouseY <= screenY){
+        fill(0);
+        ellipse(mouseX, mouseY, 20, 20);
+        points.push(createVector(mouseX, mouseY));
+      }
     };
   }
 
