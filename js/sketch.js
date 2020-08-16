@@ -1,6 +1,22 @@
-const points = [];
-const screenX = 400;
-const screenY = 400;
+let points = [];
+const screenX = 800;
+const screenY = 600;
+
+function clearCanvas() {
+  background(244);
+  points = [];
+}
+
+function computeHull() {
+  background(244);
+
+  let n = points.length;
+  for (let i = 0; i < n; i++) {
+    ellipse(points[i].x, points[i].y, 20, 20);
+  }
+
+  convexHull();
+}
 
 function orientation(p, q, r) {
   // To find orientation of ordered triplet (p, q, r).  
@@ -21,10 +37,9 @@ function orientation(p, q, r) {
 }
 
 function convexHull() {
-  n = points.length
+  let n = points.length;
   if (n >= 3) {
     points.sort((a, b) => a.x - b.x);
-    let mostLeft = points[0];
     let hull = [];
     let p = 0;
     let q = 0;
