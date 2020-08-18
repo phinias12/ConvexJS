@@ -1,6 +1,6 @@
 let points = [];
-const screenX = 800;
-const screenY = 600;
+const screenX = screen.width;
+const screenY = 450;
 
 function clearCanvas() {
   background(244);
@@ -63,7 +63,6 @@ function convexHull() {
     for (let k = 0; k < n; k++){
         try {
           stroke(0, 255, 0);
-          console.log(points[hull[k]].x + ", " + points[hull[k]].y);
           ellipse(points[hull[k]].x, points[hull[k]].y, 20, 20);
         } catch(err) {}
     }
@@ -88,17 +87,12 @@ function setup() {
 function draw() {
   if (mouseIsPressed) {
     mouseReleased = function() {
-      if (mouseX <= screenX && mouseY <= screenY){
+      if ((mouseX <= screenX && 0 <= mouseY) && (0 <= mouseY && mouseY <= screenY)){
         fill(0);
         ellipse(mouseX, mouseY, 20, 20);
         points.push(createVector(mouseX, mouseY));
+        console.log(mouseX, mouseY)
       }
     };
-  }
-
-  if (isKeyPressed) {
-    if (keyIsPressed && key.toString() === 'a') {
-      convexHull();
-    }
   }
 }
